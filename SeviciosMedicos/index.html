@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title> BD Médicos </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/misFunciones.js"></script>
+</head>
+
+<body  >
+
+<h1 style="text-align: center;"> SERVICIOS MÉDICOS</h1>
+
+
+<h1 style="color:darkmagenta" >DOCTOR</h1>
+<fieldset style= "width: 70%" >
+    <legend style="color:darkmagenta" >Ingrese Datos del Doctor</legend>
+<div>
+    <input type="text" id="doctorName" placeholder="name">
+    <input type="number" id="department" placeholder="department">
+    <input type="number" id="year" placeholder="year">
+    <input type="text" id="description" placeholder="description">
+</div>
+<button onclick="consultarDoctor()">Consultar</button>
+<button onclick="guardarDoctor()">Guardar</button>
+</fieldset>
+<div id="resultado1"></div>
+
+
+<h1 style="color:darkgoldenrod">CLIENTE</h1>
+<fieldset style= "width: 70%">
+    <legend style="color:indigo">Ingrese Datos del Cliente</legend>
+<div>
+    <input type="text" id="email" placeholder="email">
+    <input type="text" id="password" placeholder="password">
+    <input type="text" id="name" placeholder="name">
+    <input type="number" id="age" placeholder="age">
+</div>
+<button onclick="consultarCliente()">Consultar</button>
+<button onclick="guardarCliente()">Guardar</button>
+</fieldset>
+<div id="resultado2"></div>
+
+
+<h1 style="color:darkcyan">RESERVACIÓN</h1>
+<fieldset style="width: 50%" >
+    <legend style= "color:darkolivegreen">Reservaciones</legend>
+<div>
+    <input  type="date" id="startDate" placeholder="startDate">
+    <input  type="date" id="devolutionDate" placeholder="devolutionDate">
+    <input  type="text" id="status" placeholder="status">
+</div>
+<button onclick="consultarReservacion()">Consultar</button>
+<button onclick="guardarReservacion()">Guardar</button>
+</fieldset>
+<div id="resultado3"></div>
+
+
+<h1 style="color:darkolivegreen">ESPECIALIDAD</h1>
+<fieldset style="width: 35%" >
+    <legend style= "color:darkolivegreen">Especialidades</legend>
+<div>
+    <input  type="text" id="specialtyName" placeholder="name">
+    <input  type="text" id="specialtyDescription" placeholder="description">
+</div>
+<button onclick="consultarEspecialidad()">Consultar</button>
+<button onclick="guardarEspecialidad()">Guardar</button>
+</fieldset>
+<div id="resultado4"></div>
+
+
+<h1 style="color:darkslateblue">MENSAJE</h1>
+<fieldset style="width: 20%" >
+    <legend style= "color:darkslateblue">Mensajes</legend>
+<div>
+    <input  type="text" id="messageText" placeholder="messageText">
+</div>
+<button onclick="consultarMensaje()">Consultar</button>
+<button onclick="guardarMensaje()">Guardar</button>
+</fieldset>
+<div id="resultado5"></div>
+
+
+</body>
+
+</html>
