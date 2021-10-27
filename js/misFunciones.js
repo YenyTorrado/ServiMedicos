@@ -1,6 +1,6 @@
 function consultarDoctor(){
     $.ajax({
-        url:"http://144.22.59.136:8080/api/Doctor/all",
+        url:"http://129.151.101.11:8080/api/Doctor/all",
         type:"GET",
         datatype:"JSON",
         success:function(doctor){
@@ -39,7 +39,7 @@ function guardarDoctor(){
         contentType:"application/json; charset-utf-8",
         datatype:"JSON",
         data:JSON.stringify(myData),
-        url:"http://144.22.59.136:8080/api/Doctor/save",
+        url:"http://129.151.101.11:8080/api/Doctor/save",
 
         success:function(response) {
             console.log(response);
@@ -66,7 +66,7 @@ function actualizarDoctor(idElemento){
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://144.22.59.136:8080/api/Doctor/update",
+        url:"http://129.151.101.11:8080/api/Doctor/update",
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
@@ -91,7 +91,7 @@ function eliminarDoctor(idElemento){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://144.22.59.136:8080/api/Doctor/" + idElemento,
+        url:"http://129.151.101.11:8080/api/Doctor/" + idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",
@@ -107,7 +107,7 @@ function eliminarDoctor(idElemento){
 
 function consultarCliente(){
     $.ajax({
-        url:"http://144.22.59.136:8080/api/Client/all",
+        url:"http://129.151.101.11:8080/api/Client/all",
         type:"GET",
         datatype:"JSON",
         success:function(cliente){
@@ -146,7 +146,7 @@ function guardarCliente(){
         contentType:"application/json; charset-utf-8",
         datatype:"JSON",
         data:JSON.stringify(myData),
-        url:"http://144.22.59.136:8080/api/Client/save",
+        url:"http://129.151.101.11:8080/api/Client/save",
 
         success:function(response) {
             console.log(response);
@@ -173,7 +173,7 @@ function actualizarCliente(idElemento){
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://144.22.59.136:8080/api/Client/update",
+        url:"http://129.151.101.11:8080/api/Client/update",
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
@@ -197,7 +197,7 @@ function eliminarCliente(idElemento){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://144.22.59.136:8080/api/Client/" + idElemento,
+        url:"http://129.151.101.11:8080/api/Client/" + idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",
@@ -213,7 +213,7 @@ function eliminarCliente(idElemento){
 
 function consultarReservacion(){
     $.ajax({
-        url:"http://144.22.59.136:8080/api/Reservation/all",
+        url:"http://129.151.101.11:8080/api/Reservation/all",
         type:"GET",
         datatype:"JSON",
         success:function(reservacion){
@@ -251,7 +251,7 @@ function guardarReservacion(){
         contentType:"application/json; charset-utf-8",
         datatype:"JSON",
         data:JSON.stringify(myData),
-        url:"http://144.22.59.136:8080/api/Reservation/save",
+        url:"http://129.151.101.11:8080/api/Reservation/save",
 
         success:function(response) {
             console.log(response);
@@ -277,7 +277,7 @@ function actualizarReservacion(idElemento){
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://144.22.59.136:8080/api/Reservation/update",
+        url:"http://129.151.101.11:8080/api/Reservation/update",
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
@@ -299,7 +299,7 @@ function eliminarReservacion(idElemento){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://144.22.59.136:8080/api/Reservation/"+ idElemento,
+        url:"http://129.151.101.11:8080/api/Reservation/"+ idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",
@@ -316,7 +316,7 @@ function eliminarReservacion(idElemento){
 
 function consultarEspecialidad(){
     $.ajax({
-        url:"http://144.22.59.136:8080/api/Specialty/all",
+        url:"http://129.151.101.11:8080/api/Specialty/all",
         type:"GET",
         datatype:"JSON",
         success:function(especialidad){
@@ -352,7 +352,7 @@ function guardarEspecialidad(){
         contentType:"application/json; charset-utf-8",
         datatype:"JSON",
         data:JSON.stringify(myData),
-        url:"http://144.22.59.136:8080/api/Specialty/save",
+        url:"http://129.151.101.11:8080/api/Specialty/save",
 
         success:function(response) {
             console.log(response);
@@ -377,7 +377,7 @@ function actualizarEspecialidad(idElemento){
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://144.22.59.136:8080/api/Specialty/update",
+        url:"http://129.151.101.11:8080/api/Specialty/update",
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
@@ -398,7 +398,7 @@ function eliminarEspecialidad(idElemento){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://144.22.59.136:8080/api/Specialty/"+ idElemento,
+        url:"http://129.151.101.11:8080/api/Specialty/"+ idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",
@@ -414,7 +414,7 @@ function eliminarEspecialidad(idElemento){
 
 function consultarMensaje(){
     $.ajax({
-        url:"http://144.22.59.136:8080/api/Message/all",
+        url:"http://129.151.101.11:8080/api/Message/all",
         type:"GET",
         datatype:"JSON",
         success:function(mensaje){
@@ -448,7 +448,7 @@ function guardarMensaje(){
         contentType:"application/json; charset-utf-8",
         datatype:"JSON",
         data:JSON.stringify(myData),
-        url:"http://144.22.59.136:8080/api/Message/save",
+        url:"http://129.151.101.11:8080/api/Message/save",
 
         success:function(response) {
             console.log(response);
@@ -472,7 +472,7 @@ function actualizarMensaje(idElemento){
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://144.22.59.136:8080/api/Message/update",
+        url:"http://129.151.101.11:8080/api/Message/update",
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
@@ -492,7 +492,7 @@ function eliminarMensaje(idElemento){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://144.22.59.136:8080/api/Message/"+ idElemento,
+        url:"http://129.151.101.11:8080/api/Message/"+ idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",
