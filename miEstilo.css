@@ -1,0 +1,12 @@
+#cabecera {
+    width: 90%;
+    height: 140px;
+    padding: 0% 2%;
+    background-color:blueviolet;
+    border: 3px solid black;
+    
+    }
+    #cabecera h1 {
+    font: bold 60px Times New Roam;
+    color:white;
+    }

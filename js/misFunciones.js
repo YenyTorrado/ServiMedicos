@@ -1,3 +1,111 @@
+function consultarCliente(){
+    $.ajax({
+        url:"http://129.151.101.11:8080/api/Client/all",
+        type:"GET",
+        datatype:"JSON",
+        success:function(cliente){
+            console.log(cliente);
+            imprimirCliente(cliente);
+        }
+    });
+}
+
+function imprimirCliente(cliente){
+    let myTable="<table>";
+    myTable = "<table border='1'; style= 'background-color:orange;'><tr><th>Nombre<th>Años<th>Em@il<th>Contraseña"
+    for(i=0;i<cliente.length;i++){
+        myTable+="<tr>";
+        myTable+="<td>"+cliente[i].name+"</td>";
+        myTable+="<td>"+cliente[i].age+"</td>";
+        myTable+="<td>"+cliente[i].email+"</td>";
+        myTable+="<td>"+cliente[i].password+"</td>";
+        myTable+="<td> <button onclick=' actualizarCliente("+cliente[i].idClient+")'>Actualizar</button>";
+        myTable+="<td> <button onclick='eliminarCliente("+cliente[i].idClient+")'> Eliminar </button>";
+        myTable+="</tr>";
+    }
+    myTable+="</table>";
+    $("#resultado1").append(myTable);
+}
+
+function guardarCliente(){
+    let myData={
+        name:$("#name").val(),
+        age:$("#age").val(),
+        email:$("#email").val(),
+        password:$("#password").val(),
+       
+    };
+    $.ajax({
+        type:"POST",
+        contentType:"application/json; charset-utf-8",
+        datatype:"JSON",
+        data:JSON.stringify(myData),
+        url:"http://129.151.101.11:8080/api/Client/save",
+
+        success:function(response) {
+            console.log(response);
+        console.log("Se guardo correctamente");
+        alert("Se guardo correctamente");
+        window.location.reload()
+    },
+
+    error: function(jqXHR, textStatus, errorThrown) {
+          window.location.reload()
+        alert("No se guardo correctamente");
+    }
+    });
+}
+
+function actualizarCliente(idElemento){
+    let myData={
+        idClient:idElemento,
+        name:$("#name").val(),
+        age:$("#age").val(),
+        email:$("#email").val(),
+        password:$("#password").val(),
+       
+    };
+    console.log(myData);
+    let dataToSend=JSON.stringify(myData);
+    $.ajax({
+        url:"http://129.151.101.11:8080/api/Client/update",
+        type:"PUT",
+        data:dataToSend,
+        contentType:"application/JSON",
+        datatype:"JSON",
+        success:function(doctor){
+            $("#resultado").empty();
+            $("#idClient").val(""),
+            $("#name").val(""),
+            $("#age").val(""),
+            $("#email").val(""),
+            $("#password").val(""),
+            alert("Dato Actualizado")
+            window.location.reload()
+        }
+    });
+}
+
+function eliminarCliente(idElemento){
+    let myData={
+        id:idElemento
+    };
+    let dataToSend=JSON.stringify(myData);
+    $.ajax({
+        url:"http://129.151.101.11:8080/api/Client/" + idElemento,
+        type:"DELETE",
+        data:dataToSend,
+        contentType:"application/JSON",
+        datatype:"JSON",
+        success:function(cliente){
+            $("#resultado").empty();
+            alert("Dato Eliminado")
+            window.location.reload()
+        }
+    });
+}
+
+
 function consultarDoctor(){
     $.ajax({
         url:"http://129.151.101.11:8080/api/Doctor/all",
@@ -12,7 +120,7 @@ function consultarDoctor(){
 
 function imprimirDoctor(doctor){
     let myTable="<table>";
-    myTable = "<table border='1'><tr><th>Nombre<th>Departamento<th>Año<th>Descripción"
+    myTable = "<table border='1'; style= 'background-color: cyan;'><tr><th>Nombre<th>Departamento<th>Año<th>Descripción"
     for(i=0;i<doctor.length;i++){
         myTable+="<tr>";
         myTable+="<td>"+doctor[i].name+"</td>";
@@ -24,7 +132,7 @@ function imprimirDoctor(doctor){
         myTable+="</tr>";
     }
     myTable+="</table>";
-    $("#resultado1").append(myTable);
+    $("#resultado2").append(myTable);
 }
 
 function guardarDoctor(){
@@ -105,48 +213,45 @@ function eliminarDoctor(idElemento){
 }
 
 
-function consultarCliente(){
+function consultarEspecialidad(){
     $.ajax({
-        url:"http://129.151.101.11:8080/api/Client/all",
+        url:"http://129.151.101.11:8080/api/Specialty/all",
         type:"GET",
         datatype:"JSON",
-        success:function(cliente){
-            console.log(cliente);
-            imprimirCliente(cliente);
+        success:function(especialidad){
+            console.log(especialidad);
+            imprimirEspecialidad(especialidad);
         }
     });
 }
 
-function imprimirCliente(cliente){
+function imprimirEspecialidad(especialidad){
     let myTable="<table>";
-    myTable = "<table border='1'><tr><th>Em@il<th>Contraseña<th>Nombre<th>Años"
-    for(i=0;i<cliente.length;i++){
+    myTable = "<table border='1'; style= 'background-color: magenta;'><tr><th>Nombre<th>Descripción"
+    for(i=0;i<especialidad.length;i++){
         myTable+="<tr>";
-        myTable+="<td>"+cliente[i].email+"</td>";
-        myTable+="<td>"+cliente[i].password+"</td>";
-        myTable+="<td>"+cliente[i].name+"</td>";
-        myTable+="<td>"+cliente[i].age+"</td>";
-        myTable+="<td> <button onclick=' actualizarCliente("+cliente[i].idClient+")'>Actualizar</button>";
-        myTable+="<td> <button onclick='eliminarCliente("+cliente[i].idClient+")'> Eliminar </button>";
+        myTable+="<td>"+especialidad[i].name+"</td>";
+        myTable+="<td>"+especialidad[i].description+"</td>";
+        myTable+="<td> <button onclick=' actualizarEspecialidad("+especialidad[i].id+")'>Actualizar</button>";
+        myTable+="<td> <button onclick='eliminarEspecialidad("+especialidad[i].id+")'> Eliminar </button>";
         myTable+="</tr>";
     }
     myTable+="</table>";
-    $("#resultado2").append(myTable);
+    $("#resultado3").append(myTable);
 }
 
-function guardarCliente(){
+function guardarEspecialidad(){
     let myData={
-        email:$("#email").val(),
-        password:$("#password").val(),
-        name:$("#name").val(),
-        age:$("#age").val(),
+        name:$("#specialtyName").val(),
+        description:$("#specialtyDescription").val(),
     };
+    let dataToSend=JSON.stringify(myData);
     $.ajax({
         type:"POST",
         contentType:"application/json; charset-utf-8",
         datatype:"JSON",
         data:JSON.stringify(myData),
-        url:"http://129.151.101.11:8080/api/Client/save",
+        url:"http://129.151.101.11:8080/api/Specialty/save",
 
         success:function(response) {
             console.log(response);
@@ -162,49 +267,44 @@ function guardarCliente(){
     });
 }
 
-function actualizarCliente(idElemento){
+function actualizarEspecialidad(idElemento){
     let myData={
-        idClient:idElemento,
-        email:$("#email").val(),
-        password:$("#password").val(),
-        name:$("#name").val(),
-        age:$("#age").val(),
+        id:idElemento,
+        name:$("#specialtyName").val(),
+        description:$("#specialtyDescription").val(),
     };
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://129.151.101.11:8080/api/Client/update",
+        url:"http://129.151.101.11:8080/api/Specialty/update",
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
         datatype:"JSON",
-        success:function(doctor){
+        success:function(mensaje){
             $("#resultado").empty();
-            $("#idClient").val("");
-            $("#email").val(""),
-            $("#password").val(""),
-            $("#name").val(""),
-            $("#age").val(""),
+            $("#specialtyName").val(""),
+            $("#specialtyDescription").val(""),
             alert("Dato Actualizado")
             window.location.reload()
         }
     });
 }
 
-function eliminarCliente(idElemento){
+function eliminarEspecialidad(idElemento){
     let myData={
         id:idElemento
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://129.151.101.11:8080/api/Client/" + idElemento,
+        url:"http://129.151.101.11:8080/api/Specialty/"+ idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",
         datatype:"JSON",
-        success:function(cliente){
+        success:function(especialidad){
             $("#resultado").empty();
-            alert("Dato Eliminado")
+            alert("Dato Eliminado.")
             window.location.reload()
         }
     });
@@ -225,7 +325,7 @@ function consultarReservacion(){
 
 function imprimirReservacion(reservacion){
     let myTable="<table>";
-    myTable = "<table border='1'><tr><th>Inicio<th>Devolución<th>Estado"
+    myTable = "<table border='1'; style= 'background-color: greenyellow;'><tr><th>Inicio<th>Devolución<th>Estado"
     for(i=0;i<reservacion.length;i++){
         myTable+="<tr>";
         myTable+="<td>"+reservacion[i].startDate+"</td>";
@@ -236,7 +336,7 @@ function imprimirReservacion(reservacion){
         myTable+="</tr>";
     }
     myTable+="</table>";
-    $("#resultado3").append(myTable);
+    $("#resultado4").append(myTable);
 }
 
 function guardarReservacion(){
@@ -314,104 +414,6 @@ function eliminarReservacion(idElemento){
 }
 
 
-function consultarEspecialidad(){
-    $.ajax({
-        url:"http://129.151.101.11:8080/api/Specialty/all",
-        type:"GET",
-        datatype:"JSON",
-        success:function(especialidad){
-            console.log(especialidad);
-            imprimirEspecialidad(especialidad);
-        }
-    });
-}
-
-function imprimirEspecialidad(especialidad){
-    let myTable="<table>";
-    myTable = "<table border='1'><tr><th>Nombre<th>Descripción"
-    for(i=0;i<especialidad.length;i++){
-        myTable+="<tr>";
-        myTable+="<td>"+especialidad[i].name+"</td>";
-        myTable+="<td>"+especialidad[i].description+"</td>";
-        myTable+="<td> <button onclick=' actualizarEspecialidad("+especialidad[i].id+")'>Actualizar</button>";
-        myTable+="<td> <button onclick='eliminarEspecialidad("+especialidad[i].id+")'> Eliminar </button>";
-        myTable+="</tr>";
-    }
-    myTable+="</table>";
-    $("#resultado4").append(myTable);
-}
-
-function guardarEspecialidad(){
-    let myData={
-        name:$("#specialtyName").val(),
-        description:$("#specialtyDescription").val(),
-    };
-    let dataToSend=JSON.stringify(myData);
-    $.ajax({
-        type:"POST",
-        contentType:"application/json; charset-utf-8",
-        datatype:"JSON",
-        data:JSON.stringify(myData),
-        url:"http://129.151.101.11:8080/api/Specialty/save",
-
-        success:function(response) {
-            console.log(response);
-        console.log("Se guardo correctamente");
-        alert("Se guardo correctamente");
-        window.location.reload()
-    },
-
-    error: function(jqXHR, textStatus, errorThrown) {
-          window.location.reload()
-        alert("No se guardo correctamente");
-    }
-    });
-}
-
-function actualizarEspecialidad(idElemento){
-    let myData={
-        id:idElemento,
-        name:$("#specialtyName").val(),
-        description:$("#specialtyDescription").val(),
-    };
-    console.log(myData);
-    let dataToSend=JSON.stringify(myData);
-    $.ajax({
-        url:"http://129.151.101.11:8080/api/Specialty/update",
-        type:"PUT",
-        data:dataToSend,
-        contentType:"application/JSON",
-        datatype:"JSON",
-        success:function(mensaje){
-            $("#resultado").empty();
-            $("#specialtyName").val(""),
-            $("#specialtyDescription").val(""),
-            alert("Dato Actualizado")
-            window.location.reload()
-        }
-    });
-}
-
-function eliminarEspecialidad(idElemento){
-    let myData={
-        id:idElemento
-    };
-    let dataToSend=JSON.stringify(myData);
-    $.ajax({
-        url:"http://129.151.101.11:8080/api/Specialty/"+ idElemento,
-        type:"DELETE",
-        data:dataToSend,
-        contentType:"application/JSON",
-        datatype:"JSON",
-        success:function(especialidad){
-            $("#resultado").empty();
-            alert("Dato Eliminado.")
-            window.location.reload()
-        }
-    });
-}
-
-
 function consultarMensaje(){
     $.ajax({
         url:"http://129.151.101.11:8080/api/Message/all",
@@ -426,7 +428,7 @@ function consultarMensaje(){
 
 function imprimirMensaje(mensaje){
     let myTable="<table>";
-    myTable = "<table border='1'><tr><th>Mensaje"
+    myTable = "<table border='1'; style= 'background-color: yellow;'><tr><th>Mensaje"
     for(i=0;i<mensaje.length;i++){
         myTable+="<tr>";
         myTable+="<td>"+mensaje[i].messageText+"</td>";
